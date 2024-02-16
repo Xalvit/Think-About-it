@@ -1,6 +1,6 @@
+// by Xalvi :]
 #include <iostream>
 #include <string>
-// by Xalvi :]
 #define K 10
 #define Q 10
 #define J 10

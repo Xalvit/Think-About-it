@@ -63,7 +63,7 @@ int Got_A() // DON'T USE IT.
 	}
 }
 
-std::string Black_Jack() // FOR 2 PLAYERS.
+std::string Black_Jack()
 {
 	//cards types and some stuff...
 
@@ -181,6 +181,6 @@ std::string Black_Jack() // FOR 2 PLAYERS.
 int main()
 {
 	srand(time(NULL));
-
+	Black_Jack(); // <-- This function is "main"
 	return 0;
 }

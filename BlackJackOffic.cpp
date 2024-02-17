@@ -6,7 +6,13 @@
 #define J 10
 #define A 11
 int Got_A();
-int Picked_Card(const int cards[]) // DON'T USE IT.
+
+void Out(std::string description, int outfile)
+{
+	std::cout << std::endl << description << "\t" << outfile << std::endl;
+}
+
+int Picked_Card(const int cards[])
 {
 	int Pickd_Card = cards[rand() % 13];
 	if (Pickd_Card == A)
@@ -15,7 +21,7 @@ int Picked_Card(const int cards[]) // DON'T USE IT.
 	return Pickd_Card;
 }
 
-int Conclusion(int Plr1, int Plr2) // DON'T USE IT.
+int Conclusion(int Plr1, int Plr2)
 {
 	if (Plr1 > Plr2)
 	{
@@ -31,7 +37,7 @@ int Conclusion(int Plr1, int Plr2) // DON'T USE IT.
 	}
 }
 
-int Pick_or_no() // DON'T USE IT.
+int Pick_or_no()
 {
 	int yes_no = 0;
 	std::cout << "\nYou want to take another one card?\n\"1\" = Yes\n\"0\" = No\n";
@@ -47,9 +53,9 @@ int Pick_or_no() // DON'T USE IT.
 	}
 }
 
-int Got_A() // DON'T USE IT.
+int Got_A()
 {
-	int A_Data = 11;
+	int A_Data = 0;
 	std::cout << "\nYou got \"A\", pick the value of the card: \"1\" or \"11\":";
 	std::cin >> A_Data;
 	if (A_Data == 11)
@@ -63,7 +69,7 @@ int Got_A() // DON'T USE IT.
 	}
 }
 
-std::string Black_Jack()
+std::string Black_Jack() // Main fuction :]
 {
 	//cards types and some stuff...
 
@@ -75,15 +81,22 @@ std::string Black_Jack()
 	int Player_1 = 0;
 	int Plr_1_StartCards[2]{ 0,0 };
 	Plr_1_StartCards[0] = cards[rand() % 13]; // card 1.
-
-	if (Plr_1_StartCards[0] == A)
-		Plr_1_StartCards[0] = Got_A();
-	std::cout << "First card:\t" << Plr_1_StartCards[0] << std::endl;
 	Plr_1_StartCards[1] = cards[rand() % 13]; // card 2.
 
+	std::cout << "First starter card:\t" << (Plr_1_StartCards[0] == 11 ? "A" : std::to_string(Plr_1_StartCards[0])) << std::endl;
+	std::cout << "Second starter card:\t" << (Plr_1_StartCards[1] == 11 ? "A" : std::to_string(Plr_1_StartCards[1])) << std::endl;
+
+	if (Plr_1_StartCards[0] == A)
+	{
+		Plr_1_StartCards[0] = Got_A();
+		std::cout << "First card after \"A\":\t" << Plr_1_StartCards[0] << std::endl;
+	}
 	if (Plr_1_StartCards[1] == A)
+	{
 		Plr_1_StartCards[1] = Got_A();
-	std::cout << "Second card:\t" << Plr_1_StartCards[1] << std::endl;
+		Out("Second card after \"A\":\t", Plr_1_StartCards[1]);
+	}
+
 	// Player 1 start cards value
 
 	Player_1 = Plr_1_StartCards[0] + Plr_1_StartCards[1];
@@ -120,15 +133,21 @@ std::string Black_Jack()
 	int Plr_2_StartCards[2]{ 0,0 };
 
 	Plr_2_StartCards[0] = cards[rand() % 13]; // card 1.
+	Plr_2_StartCards[1] = cards[rand() % 13]; // card 2.
+	std::cout << "First starter card:\t" << (Plr_2_StartCards[0] == 11 ? "A" : std::to_string(Plr_2_StartCards[0])) << "\n";
+	std::cout << "Second starter card:\t" << (Plr_2_StartCards[1] == 11 ? "A" : std::to_string(Plr_2_StartCards[1])) << "\n";
 
 	if (Plr_2_StartCards[0] == A)
+	{
 		Plr_2_StartCards[0] = Got_A();
-	std::cout << "First card:\t" << Plr_2_StartCards[0] << std::endl;
-	Plr_2_StartCards[1] = cards[rand() % 13]; // card 2.
+		std::cout << "First card after \"A\":\t" << Plr_2_StartCards[0] << std::endl;
+	}
 
 	if (Plr_2_StartCards[1] == A)
+	{
 		Plr_2_StartCards[1] = Got_A();
-	std::cout << "First card:\t" << Plr_2_StartCards[1] << std::endl;
+		std::cout << "Second card after \"A\":\t" << Plr_2_StartCards[1] << std::endl;
+	}
 	// Player 2 start cards value
 
 	Player_2 = Plr_2_StartCards[0] + Plr_2_StartCards[1];
@@ -172,15 +191,14 @@ std::string Black_Jack()
 	}
 	if (Conclusion(Player_1, Player_2) == 0)
 	{
-		std::cout << "Draw!:\t(" << Player_1 << " = " << Player_2 << ")\n";
+		std::cout << "Draw!\t(" << Player_1 << " = " << Player_2 << ")\n";
 		return "Draw!";
 	}
 	// Function end!
 }
-
 int main()
 {
 	srand(time(NULL));
-	Black_Jack(); // <-- This function is "main"
+	Black_Jack(); // <-- "main" function
 	return 0;
 }

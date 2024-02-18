@@ -6,10 +6,11 @@ std::string Not_full_Quadratic_Equation(const float a, const float b, const floa
 {
 	// There are 3 ways to complete it...
 	// If b = 0
-	if (a == 0)
+	if (a == 0) // Equation feature
 	{
-		std::cout << "\na can't be 0, Equation not quadratic!\n";
-		return "NOTHING";
+		float X = -c / b;
+		std::cout << "Root:\t" << X;
+		return std::to_string(X);
 	}
 	if (b == 0 && c != 0) // a * x^2 + c = 0		||		ax^2 + c = 0
 	{
@@ -49,6 +50,13 @@ std::string Quadratic_Equation(const float a, const float b, const float c)
 	// Quadratic equation formula: a * x^2 + b * x + c = 0		||		ax^2 + bx + c = 0
 	// Discriminant formula: b^2 - 4 * a * c
 	// Root formula: (-b +- sqrt(discriminant))/(a*2)
+
+	if (a == 0) // Equation feature
+	{
+		float X = -c / b;
+		std::cout << "Root:\t" << X;
+		return std::to_string(X);
+	}
 
 	float Discr = pow(b, 2) - (4 * a * c);
 

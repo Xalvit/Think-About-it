@@ -7,6 +7,11 @@
 #define A 11
 int Got_A();
 
+int New_player(const int cards[])
+{
+
+}
+
 void Out(std::string description, int outfile)
 {
 	std::cout << std::endl << description << "\t" << outfile << std::endl;

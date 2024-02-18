@@ -8,7 +8,7 @@ std::string Not_full_Quadratic_Equation(const float a, const float b, const floa
 	// If b = 0
 	if (a == 0)
 	{
-		std::cout << "\na can't be 0!\n";
+		std::cout << "\na can't be 0, Equation not quadratic!\n";
 		return "NOTHING";
 	}
 	if (b == 0 && c != 0) // a * x^2 + c = 0		||		ax^2 + c = 0

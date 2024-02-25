@@ -9,9 +9,16 @@
 
 int Got_A();
 
-int Picked_Card(const int cards[])
+int Picked_Card(const int* cards)
 {
-	int Pickd_Card = cards[rand() % 13];
+	int Pickd_Card = cards[rand() % 52];
+	if (Pickd_Card == 0)
+	{
+		while (Pickd_Card == 0)
+		{
+			Pickd_Card = cards[rand() % 52];
+		}
+	}
 	std::cout << "Picked card:\t" << (Pickd_Card == 11 ? "A" : std::to_string(Pickd_Card)) << std::endl;
 	return Pickd_Card;
 }
@@ -106,12 +113,25 @@ int Full_Sum(int* arr, int size)
 	return data;
 }
 
+void Delete_card(int*& cards, int size, int selected)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (cards[i] == selected)
+		{
+			cards[i] = 0;
+			break;
+		}
+	}
+}
+
+
 std::string Black_Jack() // Main fuction :]
 {
 	//cards types and some stuff...
 
-	const int cards_number = 13;
-	const int cards[cards_number]{ 2,3,4,5,6,7,8,9,10,J,Q,K,A };
+	int cards_number = 52;
+	int* cards = new int[cards_number] { 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, J, J, J, J, Q, Q, Q, Q, K, K, K, K, A, A, A, A };
 
 	// Player 1 and start cards.
 
@@ -120,15 +140,22 @@ std::string Black_Jack() // Main fuction :]
 	int Plr_1_StartCards[2]{ 0,0 };
 	int Amount_1 = 2;
 	// Player 1 start cards value
-	Plr_1_StartCards[0] = cards[rand() % 13]; // card 1.
-	Plr_1_StartCards[1] = cards[rand() % 13]; // card 2.
+	Plr_1_StartCards[0] = cards[rand() % 52]; // card 1.
+	Delete_card(cards, cards_number, Plr_1_StartCards[0]);
+	Plr_1_StartCards[1] = cards[rand() % 52]; // card 2.
+	if (Plr_1_StartCards == 0)
+	{
+		while (Plr_1_StartCards == 0)
+			Plr_1_StartCards[1] = cards[rand() % 52];
+	}
+	Delete_card(cards, cards_number, Plr_1_StartCards[1]);
 	// Player 1 Cards stuff....
 	int* Cards_1 = new int[Amount_1];
 	Cards_1[0] = Plr_1_StartCards[0];
 	Cards_1[1] = Plr_1_StartCards[1];
 	std::cout << "\n--------------------\n";
-	std::cout << "First starter card:\t" << (Plr_1_StartCards[0] == 11 ? "A" : std::to_string(Plr_1_StartCards[0])) << std::endl;
-	std::cout << "Second starter card:\t" << (Plr_1_StartCards[1] == 11 ? "A" : std::to_string(Plr_1_StartCards[1])) << std::endl;
+	std::cout << "First starter card:\t" << (Plr_1_StartCards[0] == A ? "A" : std::to_string(Plr_1_StartCards[0])) << std::endl;
+	std::cout << "Second starter card:\t" << (Plr_1_StartCards[1] == A ? "A" : std::to_string(Plr_1_StartCards[1])) << std::endl;
 
 	// Player 1 pickable cards.
 
@@ -137,6 +164,12 @@ std::string Black_Jack() // Main fuction :]
 		if (Pick_or_no() == 1)
 		{
 			int Picked_Data = Picked_Card(cards);
+			Delete_card(cards, cards_number, Picked_Data);
+			if (Picked_Data == 0)
+			{
+				while (Picked_Data == 0)
+					Picked_Data = cards[rand() % 52];
+			}
 			Amount_1++;
 			Cards_1[Amount_1 - 1] = Picked_Data;
 			std::cout << "\nYour cards now:\t";
@@ -145,7 +178,6 @@ std::string Black_Jack() // Main fuction :]
 		else
 			break;
 	}
-
 	std::cout << "\n Player 1 total:\t" << std::endl;
 	for (int i = 0; i < Amount_1; i++)
 	{
@@ -201,15 +233,22 @@ std::string Black_Jack() // Main fuction :]
 	int Plr_2_StartCards[2]{ 0,0 };
 	int Amount_2 = 2;
 	// Player 2 start cards value
-	Plr_2_StartCards[0] = cards[rand() % 13]; // card 1.
-	Plr_2_StartCards[1] = cards[rand() % 13]; // card 2.
+	Plr_2_StartCards[0] = cards[rand() % 52]; // card 1.
+	Delete_card(cards, cards_number, Plr_2_StartCards[0]);
+	Plr_2_StartCards[1] = cards[rand() % 52]; // card 2.
+	Delete_card(cards, cards_number, Plr_2_StartCards[1]);
+	if (Plr_2_StartCards == 0)
+	{
+		while (Plr_2_StartCards == 0)
+			Plr_2_StartCards[1] = cards[rand() % 52];
+	}
 	// Player 2 Cards stuff....
 	int* Cards_2 = new int[Amount_2];
 	Cards_2[0] = Plr_2_StartCards[0];
 	Cards_2[1] = Plr_2_StartCards[1];
 	std::cout << "\n--------------------\n";
-	std::cout << "First starter card:\t" << (Plr_2_StartCards[0] == 11 ? "A" : std::to_string(Plr_2_StartCards[0])) << std::endl;
-	std::cout << "Second starter card:\t" << (Plr_2_StartCards[1] == 11 ? "A" : std::to_string(Plr_2_StartCards[1])) << std::endl;
+	std::cout << "First starter card:\t" << (Plr_2_StartCards[0] == A ? "A" : std::to_string(Plr_2_StartCards[0])) << std::endl;
+	std::cout << "Second starter card:\t" << (Plr_2_StartCards[1] == A ? "A" : std::to_string(Plr_2_StartCards[1])) << std::endl;
 
 	// Player 2 pickable cards.
 
@@ -218,6 +257,12 @@ std::string Black_Jack() // Main fuction :]
 		if (Pick_or_no() == 1)
 		{
 			int Picked_Data_2 = Picked_Card(cards);
+			Delete_card(cards, cards_number, Picked_Data_2);
+			if (Picked_Data_2 == 0)
+			{
+				while (Picked_Data_2 == 0)
+					Picked_Data_2 = cards[rand() % 52];
+			}
 			Amount_2++;
 			Cards_2[Amount_2 - 1] = Picked_Data_2;
 			std::cout << "\nYour cards now:\t";
@@ -280,7 +325,6 @@ std::string Black_Jack() // Main fuction :]
 	if (Player_2 > 21)
 		Player_2 = 0;
 
-
 	if (Player_1 == 0 || Player_2 == 0)
 	{
 		std::cout << "\n\t Both players have more than 21.\n\t" << "( " << Player_1_Data << "/21 | " << Player_2_Data << "/21 )\n";
@@ -307,6 +351,9 @@ std::string Black_Jack() // Main fuction :]
 	}
 	// Function end!
 
+	delete[] Cards_1;
+	delete[] Cards_2;
+	delete[] cards;
 }
 int main()
 {

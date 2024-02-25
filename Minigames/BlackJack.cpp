@@ -283,25 +283,28 @@ std::string Black_Jack() // Main fuction :]
 
 	if (Player_1 == 0 || Player_2 == 0)
 	{
-		std::cout << "\nBoth players have more than 21.\n" << "( " << Player_1_Data << "/21 | " << Player_2_Data << "/21 )\n";
+		std::cout << "\n\t Both players have more than 21.\n\t" << "( " << Player_1_Data << "/21 | " << Player_2_Data << "/21 )\n";
+		std::cout << "\n--------------------\n";
 		return "Both have more than needed.";
 	}
 	if (Player_1 > Player_2)
 	{
-		std::cout << "\nPlayer 1 won!\n( " << Player_1_Data << "/21 > " << Player_2_Data << "/21 )\n";
+		std::cout << "\n\t Player 1 won!\n\t( " << Player_1_Data << "/21 > " << Player_2_Data << "/21 )\n";
+		std::cout << "\n--------------------\n";
 		return "Player 1 won!";
 	}
 	if (Player_2 > Player_1)
 	{
-		std::cout << "\nPlayer 2 won!\n( " << Player_1_Data << "/21 < " << Player_2_Data << "/21 )\n";
+		std::cout << "\n\t Player 2 won!\n\t( " << Player_1_Data << "/21 < " << Player_2_Data << "/21 )\n";
+		std::cout << "\n--------------------\n";
 		return "Player 2 won!";
 	}
 	if (Player_2 == Player_1)
 	{
-		std::cout << "\nDraw.\n( " << Player_1_Data << " = " << Player_2_Data << " )\n";
+		std::cout << "\n\t Draw.\n( " << Player_1_Data << " = " << Player_2_Data << " )\n";
+		std::cout << "\n--------------------\n";
 		return "Draw.";
 	}
-	std::cout << "\n--------------------\n";
 	// Function end!
 
 }

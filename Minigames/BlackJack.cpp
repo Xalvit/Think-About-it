@@ -319,13 +319,14 @@ std::string Black_Jack() // Main fuction :]
 	system("cls");
 	std::cout << "\n--------------------\n";
 	// Conclusion.
+	Out_Arr(cards, cards_number);
 
 	if (Player_1 > 21)
 		Player_1 = 0;
 	if (Player_2 > 21)
 		Player_2 = 0;
 
-	if (Player_1 == 0 || Player_2 == 0)
+	if (Player_1 == 0 && Player_2 == 0)
 	{
 		std::cout << "\n\t Both players have more than 21.\n\t" << "( " << Player_1_Data << "/21 | " << Player_2_Data << "/21 )\n";
 		std::cout << "\n--------------------\n";

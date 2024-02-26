@@ -1,4 +1,4 @@
-by Xalvi :]
+by Xalvi [:
 ------------------------------------------
 Some interesting code from me!
 -------------

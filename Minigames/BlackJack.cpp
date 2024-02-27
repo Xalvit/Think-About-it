@@ -319,7 +319,6 @@ std::string Black_Jack() // Main fuction :]
 	system("cls");
 	std::cout << "\n--------------------\n";
 	// Conclusion.
-	Out_Arr(cards, cards_number);
 
 	if (Player_1 > 21)
 		Player_1 = 0;

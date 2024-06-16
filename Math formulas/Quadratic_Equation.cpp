@@ -1,6 +1,6 @@
 #include <iostream>
 #include <math.h>
-#inlcude <string>
+#include <string>
 
 std::string Quadratic_Equation(const double a, const double b, const double c)
 {

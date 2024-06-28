@@ -359,5 +359,6 @@ int main()
 {
 	srand(time(NULL));
 	Black_Jack();
+	system("pause");
 	return 0;
 }

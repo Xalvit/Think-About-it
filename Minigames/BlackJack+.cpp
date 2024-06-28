@@ -445,5 +445,6 @@ int main()
 {
 	srand(time(NULL));
 	Black_Jack_Plus();
+	system("pause");
 	return 0;
 }

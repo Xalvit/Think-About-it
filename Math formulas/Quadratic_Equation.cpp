@@ -55,6 +55,6 @@ int main()
 {
 	int a, b, c;
 	std::cin >> a >> b >> c;
-	Quadratic_Equation(a, b, b);
+	Quadratic_Equation(a, b, c);
 	return 0;
 }
